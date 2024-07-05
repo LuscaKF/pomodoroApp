@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useInterval } from '../hooks/use-interval';
 import { Button } from './button';
 import { Timer } from './timer';
-import { secondsToTime } from '../utils/second-to-time';
+import { secondsTotime } from '../utils/second-to-time';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const clockAlarm = require('../sounds/clock-alarm-8761.mp3')
@@ -121,7 +121,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
 
       <div className="details">
         <p>Completed cycles: {completedCycles}</p>
-        <p>Worked hours: {secondsToTime(fullWorkingTime)}</p>
+        <p>Worked hours: {secondsTotime(fullWorkingTime)}</p>
         <p>Number of pomodoros: {numberOfPomodoros}</p>
       </div>
     </div>
