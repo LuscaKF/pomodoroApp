@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useInterval } from '../hooks/use-interval';
 import { Button } from './button';
 import { Timer } from './timer';
@@ -33,19 +33,26 @@ export function PomodoroTimer(props: Props): JSX.Element {
   useInterval(
     () => {
       setMainTime(mainTime - 1);
+      if (working) setFullWorkingTime(fullWorkingTime + 1);
     },
     timeCounting ? 1000 : null,
     );
 
-    const configureWork = () => {
+    const configureWork = useCallback(() => {
       setTimeCounting(true);
       setWorking(true);
       setResting(false);
       setMainTime(props.pomodoroTime);
       audioStartWorking.play()
-    }
+    }, [
+      setTimeCounting,
+      setWorking,
+      setResting,
+      setMainTime,
+      props.pomodoroTime
+    ]);
 
-    const configureRest = (Long: boolean) => {
+    const configureRest = useCallback((Long: boolean) => {
       setTimeCounting(true);
       setWorking(false);
       setResting(true);
@@ -57,7 +64,14 @@ export function PomodoroTimer(props: Props): JSX.Element {
       }
 
       audioStopWorking.play()
-    };
+    }, [
+      setTimeCounting,
+      setWorking,
+      setResting,
+      setMainTime,
+      props.longRestTime,
+      props.shortRestTime
+    ]);
 
     useEffect(() => {
       if (working) document.body.classList.add('working');
@@ -91,7 +105,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
 
   return (
     <div className='pomodoro'>
-      <h2>You are: working!</h2>
+      <h2>You are: {working ? 'Working!' : 'Resting!'}</h2>
 
       <Timer mainTime={mainTime} />
 
