@@ -1,46 +1,93 @@
-# Getting Started with Create React App
+# Aplicativo de Timer Pomodoro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Visão Geral
 
-## Available Scripts
+Este projeto é um aplicativo de timer Pomodoro construído usando React. Ele permite que os usuários gerenciem seu tempo de forma eficiente utilizando a Técnica Pomodoro, que envolve trabalhar por um período determinado seguido por um curto descanso. O aplicativo oferece durações de trabalho e descanso personalizáveis e ciclos, além de incluir notificações sonoras para os períodos de trabalho e descanso.
 
-In the project directory, you can run:
+## Tecnologias Utilizadas
 
-### `npm start`
+- **React**: Uma biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript**: Um superset do JavaScript que adiciona tipagem estática.
+- **Custom Hooks**: Para gerenciar intervalos e timers.
+- **Áudio HTML5**: Para tocar notificações sonoras.
+- **CSS**: Para estilizar o aplicativo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Estrutura do Projeto
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+pomodoro-timer-app/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── Button.tsx
+│   │   ├── Timer.tsx
+│   │   └── PomodoroTimer.tsx
+│   ├── hooks/
+│   │   └── use-interval.ts
+│   ├── sounds/
+│   │   ├── clock-alarm-8761.mp3
+│   │   └── beep-warning-6387.mp3
+│   ├── utils/
+│   │   └── seconds-to-time.ts
+│   └── index.tsx
+├── package.json
+└── README.md
+```
 
-### `npm test`
+# Instalação e Execução
+## Siga os passos abaixo para configurar e executar o projeto em sua máquina local:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Pré-requisitos
+- Node.js (v14 ou superior)
+- npm ou yarn
 
-### `npm run build`
+## Passos
+ - 1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/pomodoro-timer-app.git
+cd pomodoro-timer-app
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 2. Instale as dependências
+```bash
+npm install
+# ou
+yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 3. Inicie o aplicativo
+```bash
+npm start
+# ou
+yarn start
+O aplicativo estará disponível em http://localhost:3000.
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Uso
+## Iniciar um Ciclo de Trabalho
+- Clique no botão "Work" para iniciar um ciclo de trabalho.
+  
+## Iniciar um Período de Descanso
+- Clique no botão "Rest" para iniciar um período de descanso curto.
 
-### `npm run eject`
+## Pausar/Retomar o Timer
+- Clique no botão "Pause/Play" para pausar ou retomar o timer.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Personalização
+## Você pode personalizar os tempos de trabalho, descanso curto, descanso longo e a quantidade de ciclos, alterando as props passadas para o componente PomodoroTimer no arquivo src/index.tsx.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```typescript
+<PomodoroTimer 
+  pomodoroTime={1500} // Tempo de trabalho em segundos (25 minutos)
+  shortRestTime={300} // Tempo de descanso curto em segundos (5 minutos)
+  longRestTime={900} // Tempo de descanso longo em segundos (15 minutos)
+  cycles={4} // Número de ciclos antes de um descanso longo
+/>
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Exemplo em imagens:
+![pomodoro1](https://github.com/LuscaKF/pomodoroApp/assets/62342102/b78d0e6f-3ceb-47f3-8f0d-8fa09da18404)
+![pomodoro2](https://github.com/LuscaKF/pomodoroApp/assets/62342102/4fceba95-3461-48de-bad7-1e383f2a66c0)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
